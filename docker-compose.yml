@@ -1,0 +1,27 @@
+version: '2.4'
+
+services:
+  mysql_db:
+    image: mysql:8.0.17
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourpass
+      - MYSQL_USER=system_abc
+      - MYSQL_PASSWORD=yourpass
+      - MYSQL_DATABASE=my_db
+    ports:
+      - 3306:3306
+  
+  mqtt:
+    image: eclipse-mosquitto:1.6.7
+    volumes:
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    ports:
+      - 1883:1883
+      - 9001:9001
+      
+
+  
+
+
